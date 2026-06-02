@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 657bd9950c543bc4898fa1e7dbbe87e2, type: 3}
+  m_Name: StandartGun
+  m_EditorClassIdentifier: 
+  gunPrefabs: {fileID: 3387494134700039889, guid: 07cc367250920414ba9c3db756dfdd67,
+    type: 3}
+  bullet: {fileID: 0}
+  lineTrajectory: {fileID: 490681729365986808, guid: df68999804e115943bca07ff3489860e,
+    type: 3}
+  shotForce: 75
+  damage: 1
+  cooldown: 0.2
+  cd: 0

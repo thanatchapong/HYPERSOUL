@@ -1,0 +1,4 @@
+repository "HyperSoul@malamalao_1@cloud"
+  path "/"
+    br "/main"
+    co "/main"
