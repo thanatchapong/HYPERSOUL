@@ -379,6 +379,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   grounded: 0
+  rideHeight: 1.1
+  rideSpring: 350
+  rideDamper: 35
+  suspensionRayLength: 1.8
   maxSlopeAngle: 40
   orientation: {fileID: 3927870149156004565}
   playerObj: {fileID: 6326138187709068291}
@@ -402,7 +406,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orientation: {fileID: 3927870149156004565}
-  playerObj: {fileID: 2096014543106995975}
+  playerObj: {fileID: 6326138187709068291}
   cam: {fileID: 5592967395609075467}
   maxSlideTime: 60
   slideForce: 200
@@ -448,7 +452,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   whatIsWall:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 128
   whatIsGround:
     serializedVersion: 2
     m_Bits: 64

@@ -5,11 +5,16 @@ using UnityEngine;
 
 public class MapGeneration : MonoBehaviour
 {
+    [System.Serializable]
+    public struct RoomPrefabs
+    {
+        public Transform room;
+        [Range(0, 100)] public int percentage;
+    }
+    
     [Header("References")]
     [SerializeField] Transform wall;
-    [SerializeField] Transform center;
-    [SerializeField] List<Transform> roomPrefabs;
-    [SerializeField] List<Transform> extraPrefabs;
+    [SerializeField] List<RoomPrefabs> roomPrefabs;
     
     [SerializeField] Transform collect;
     [SerializeField] Transform gold;
@@ -19,8 +24,6 @@ public class MapGeneration : MonoBehaviour
 
     [Header("Settings")]
     [SerializeField] int maxRoom = 5;
-    [SerializeField] int centerPercent = 5;
-    [SerializeField] int extraPercent = 15;
     int roomCount;
 
     void Start()
@@ -94,9 +97,55 @@ public class MapGeneration : MonoBehaviour
             Instantiate(wall, waypoints[randomWaypoint].transform.position, waypoints[randomWaypoint].transform.rotation);
         }
             
-        DestroyImmediate(waypoints[randomWaypoint]);
+        SafeDestroy(waypoints[randomWaypoint]);
 
         ApplyWall();
+    }
+
+    private Transform GetWeightedRandomRoom()
+    {
+        if (roomPrefabs == null || roomPrefabs.Count == 0) return null;
+
+        int totalWeight = 0;
+        foreach (var p in roomPrefabs)
+        {
+            totalWeight += p.percentage;
+        }
+
+        if (totalWeight <= 0)
+        {
+            return roomPrefabs[Random.Range(0, roomPrefabs.Count)].room;
+        }
+
+        int roll = Random.Range(0, totalWeight);
+        int weightCounter = 0;
+
+        for (int i = 0; i < roomPrefabs.Count; i++)
+        {
+            weightCounter += roomPrefabs[i].percentage;
+            if (roll < weightCounter)
+            {
+                return roomPrefabs[i].room;
+            }
+        }
+
+        return roomPrefabs[0].room;
+    }
+
+    private void SafeDestroy(GameObject obj)
+    {
+        if (obj == null) return;
+
+        if (Application.isPlaying)
+        {
+            obj.tag = "Untagged"; 
+            obj.SetActive(false);
+            Destroy(obj);
+        }
+        else
+        {
+            DestroyImmediate(obj);
+        }
     }
 
     void GenerateRoom()
@@ -110,42 +159,32 @@ public class MapGeneration : MonoBehaviour
         GetWaypoints();
 
         int randomWaypoint = Random.Range(0, waypoints.Length);
+        GameObject selectedWaypoint = waypoints[randomWaypoint];
 
-        if(!IsWaypointCollided(waypoints[randomWaypoint].transform))
+        if (selectedWaypoint != null)
         {
-            int randomRoom;
-            Transform LastRoom;
+            if (!IsWaypointCollided(selectedWaypoint.transform))
+            {
+                Transform chosenRoomPrefab = GetWeightedRandomRoom();
 
-            int percentage = Random.Range(0, 100);
-            if(roomCount < 4) percentage = 100; // make first 4
-            if(percentage <= centerPercent) // Center
-            {
-                LastRoom = Instantiate(center, waypoints[randomWaypoint].transform.position, waypoints[randomWaypoint].transform.rotation);
-            }
-            else if(percentage <= extraPercent) // Extra Room
-            {
-                randomRoom = Random.Range(0, extraPrefabs.Count);
-                LastRoom = Instantiate(extraPrefabs[randomRoom], waypoints[randomWaypoint].transform.position, waypoints[randomWaypoint].transform.rotation);
-            }
-            else
-            {
-                randomRoom = Random.Range(0, roomPrefabs.Count);
-                LastRoom = Instantiate(roomPrefabs[randomRoom], waypoints[randomWaypoint].transform.position, waypoints[randomWaypoint].transform.rotation);
-            }
-            
-            roomCount ++;
+                if (chosenRoomPrefab != null)
+                {
+                    Transform LastRoom = Instantiate(chosenRoomPrefab, selectedWaypoint.transform.position, selectedWaypoint.transform.rotation);
+                    roomCount++;
 
-            if(IsTileCollided())
-            {
-                DestroyImmediate(LastRoom.gameObject);
-                roomCount--;
+                    if (IsTileCollided())
+                    {
+                        SafeDestroy(LastRoom.gameObject);
+                        roomCount--;
 
-                GenerateRoom();
-                return;
+                        GenerateRoom();
+                        return;
+                    }
+                }
             }
+                
+            SafeDestroy(selectedWaypoint);
         }
-            
-        DestroyImmediate(waypoints[randomWaypoint]);
 
         GenerateRoom();
     }

@@ -128,11 +128,11 @@ public class PlayerMovementAdvanced : MonoBehaviour
             if(verticalVelocity.magnitude > 0.1f)
             {
                 // slide up slope
-                rb.drag += Time.deltaTime * 40;
+                rb.drag += Time.deltaTime * 15;
 
-                if(rb.drag >= 25)
+                if(rb.drag >= 15)
                 {
-                    rb.drag = 25;
+                    rb.drag = 15;
                 }
             }
             else
@@ -154,7 +154,13 @@ public class PlayerMovementAdvanced : MonoBehaviour
         else if(!grounded && sliding == true && (OnSlope() == false || exitingSlope))
         {
             // Sliding on Air
-            rb.drag = 1;
+            rb.drag = 0;
+            // rb.drag += Time.deltaTime * 20;
+
+            // if(rb.drag >= 5)
+            // {
+            //     rb.drag = 5;
+            // }
         }
         else
             rb.drag = 0;

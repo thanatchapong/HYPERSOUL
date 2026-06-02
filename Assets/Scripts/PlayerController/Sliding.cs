@@ -73,7 +73,7 @@ public class Sliding : MonoBehaviour
         
         if(!pm.grounded)
         {
-            rb.AddForce(Vector3.down * slideForce / 3, ForceMode.Impulse);
+            rb.AddForce(Vector3.down * slideForce, ForceMode.Impulse);
         }
 
         slideTimer = maxSlideTime;
@@ -84,15 +84,16 @@ public class Sliding : MonoBehaviour
     {
         Vector3 inputDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
+
         // sliding normal
-        if(!pm.OnSlope() || rb.velocity.y > -0.1f)
+        if(!pm.OnSlope() && rb.velocity.y <= 0f)
         {
             rb.AddForce(inputDirection.normalized * slideSpeed, ForceMode.Force);
 
             slideTimer -= Time.deltaTime;
             slideSpeed -= Time.deltaTime * 150;
 
-            Debug.Log(slideTimer);
+            Debug.Log("normal");
 
             if(slideSpeed <= 0)
             {
@@ -101,12 +102,14 @@ public class Sliding : MonoBehaviour
         }
 
         // sliding down a slope
-        else
+        else if(pm.OnSlope() && rb.velocity.y < -0.1f)
         {
             rb.AddForce(pm.GetSlopeMoveDirection(inputDirection) * slideSpeed, ForceMode.Force);
             rb.AddForce(Vector3.down * slideForce, ForceMode.Force);
 
             slideSpeed -= Time.deltaTime * 300;
+            
+            Debug.Log("down");
 
             if(slideSpeed <= 0)
             {

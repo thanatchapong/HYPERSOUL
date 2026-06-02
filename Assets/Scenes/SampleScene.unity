@@ -2450,6 +2450,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GamePlayerCharacter
       objectReference: {fileID: 0}
+    - target: {fileID: 8345803866857738437, guid: 08b92f96eda223342ac0a1dd66c300b6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8744029533766609703, guid: 08b92f96eda223342ac0a1dd66c300b6,
         type: 3}
       propertyPath: rideDamper
@@ -3383,13 +3388,18 @@ PrefabInstance:
     - target: {fileID: 1131756342198699120, guid: e373aa5844093734daa81ee94030606d,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5835670897565495399, guid: e373aa5844093734daa81ee94030606d,
         type: 3}
       propertyPath: playerObj
       value: 
       objectReference: {fileID: 488677702}
+    - target: {fileID: 6328317282541673311, guid: e373aa5844093734daa81ee94030606d,
+        type: 3}
+      propertyPath: whatIsWall.m_Bits
+      value: 128
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
