@@ -10,9 +10,6 @@ public class Collectibles : MonoBehaviour
     [SerializeField] private float collectionThreshold = 0.5f;
     [SerializeField] private LayerMask collectibleLayer;
 
-    [Header("Data")]
-    public int amount = 0;
-
     void Update()
     {
         InfluenceCollectibles();
@@ -24,7 +21,7 @@ public class Collectibles : MonoBehaviour
 
         for (int i = 0; i < hitColliders.Length; i++)
         {
-            if (hitColliders[i].CompareTag("Collectibles"))
+            if (hitColliders[i].CompareTag("Collectibles") || hitColliders[i].CompareTag("GoldCollect"))
             {
                 Transform collectible = hitColliders[i].transform;
                 float distance = Vector3.Distance(transform.position, collectible.position);
@@ -49,9 +46,9 @@ public class Collectibles : MonoBehaviour
     }
 
     void CollectItem(GameObject collectibleObj)
-    {
-        amount++;
-        
+    {   
+        if(collectibleObj.tag == "GoldCollect") GameManager.CollectGold(1);
+
         Destroy(collectibleObj);
     }
 

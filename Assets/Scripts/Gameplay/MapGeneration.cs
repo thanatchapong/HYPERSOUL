@@ -16,11 +16,8 @@ public class MapGeneration : MonoBehaviour
     [SerializeField] Transform wall;
     [SerializeField] List<RoomPrefabs> roomPrefabs;
     
-    [SerializeField] Transform collect;
-    [SerializeField] Transform gold;
     GameObject[] tiles;
     GameObject[] waypoints;
-    GameObject[] collectibles;
 
     [Header("Settings")]
     [SerializeField] int maxRoom = 5;
@@ -39,17 +36,13 @@ public class MapGeneration : MonoBehaviour
     {
         waypoints = GameObject.FindGameObjectsWithTag("WayPoint");
     }
-    void GetCollectibles()
-    {
-        collectibles = GameObject.FindGameObjectsWithTag("Gold");
-    }
     bool IsWaypointCollided(Transform waypoint)
     {
         GetTiles();
 
         for(int i=0; i<tiles.Length; i++)
         {
-            if(Vector3.Distance(waypoint.position, tiles[i].transform.position) < 0.1f) return true;
+            if(Vector3.Distance(waypoint.position, tiles[i].transform.position) < 2.5f) return true;
         }
 
         return false;
@@ -63,21 +56,11 @@ public class MapGeneration : MonoBehaviour
             for(int o=0; o<tiles.Length; o++)
             {
                 if(o == i) continue;
-                if (Vector3.Distance(tiles[o].transform.position, tiles[i].transform.position) < 0.1f) return true;
+                if (Vector3.Distance(tiles[o].transform.position, tiles[i].transform.position) < 2.5f) return true;
             }
         }
 
         return false;
-    }
-
-    void SpawnCollectibles()
-    {
-        GetCollectibles();
-
-        for(int i=0; i<collectibles.Length; i++)
-        {
-            Instantiate(collect, collectibles[i].transform.position, collectibles[i].transform.rotation);
-        }
     }
 
     void ApplyWall()
@@ -86,7 +69,7 @@ public class MapGeneration : MonoBehaviour
 
         if(waypoints.Length <= 0) 
         {
-            SpawnCollectibles();
+            GameManager.SpawnCollectible();
             return;
         }
 
