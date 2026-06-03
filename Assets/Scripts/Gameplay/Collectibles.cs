@@ -10,6 +10,9 @@ public class Collectibles : MonoBehaviour
     [SerializeField] private float collectionThreshold = 0.5f;
     [SerializeField] private LayerMask collectibleLayer;
 
+    [SerializeField] PlayerSound sound;
+    [SerializeField] AudioClip clip;
+
     void Update()
     {
         InfluenceCollectibles();
@@ -48,6 +51,8 @@ public class Collectibles : MonoBehaviour
     void CollectItem(GameObject collectibleObj)
     {   
         if(collectibleObj.tag == "GoldCollect") GameManager.CollectGold(1);
+
+        sound.playClip(clip);
 
         Destroy(collectibleObj);
     }

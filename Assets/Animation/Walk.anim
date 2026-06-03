@@ -286,7 +286,7 @@ AnimationClip:
   - time: 0.083333336
     functionName: playClip
     data: 
-    objectReferenceParameter: {fileID: 8300000, guid: 25af124d632280242aa197df3aa075a4,
+    objectReferenceParameter: {fileID: 8300000, guid: cbab24535b342fc4f9f360b0911691f4,
       type: 3}
     floatParameter: 0
     intParameter: 0
@@ -294,7 +294,7 @@ AnimationClip:
   - time: 0.41666666
     functionName: playClip
     data: 
-    objectReferenceParameter: {fileID: 8300000, guid: 25af124d632280242aa197df3aa075a4,
+    objectReferenceParameter: {fileID: 8300000, guid: cbab24535b342fc4f9f360b0911691f4,
       type: 3}
     floatParameter: 0
     intParameter: 0

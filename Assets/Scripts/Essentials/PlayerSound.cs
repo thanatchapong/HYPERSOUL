@@ -12,5 +12,6 @@ public class PlayerSound : MonoBehaviour
         AudioSource effectSound = Instantiate(effect, targetPoint.position, targetPoint.rotation).GetComponent<AudioSource>();
         effectSound.clip = clip;
         effectSound.pitch = effect.GetComponent<AudioSource>().pitch + Random.Range(-0.1f, 0.1f);
+        effectSound.Play();
     }
 }
