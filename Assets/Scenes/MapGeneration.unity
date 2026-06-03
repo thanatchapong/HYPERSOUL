@@ -220,10 +220,10 @@ MonoBehaviour:
   - room: {fileID: 4721343159959835259, guid: 85f616de15a492a4ead2bafef7cadf80, type: 3}
     percentage: 5
   - room: {fileID: 3767508641156711957, guid: 22a6afda6bf71174a80049e12b0b7eb9, type: 3}
-    percentage: 2
+    percentage: 2.5
   - room: {fileID: 4126860811338273734, guid: 975dd3d00255aac4f95fb6cd0d967b4a, type: 3}
-    percentage: 2
-  maxRoom: 50
+    percentage: 2.5
+  maxRoom: 25
 --- !u!1 &253024470
 GameObject:
   m_ObjectHideFlags: 0
@@ -2007,6 +2007,11 @@ PrefabInstance:
       propertyPath: collectionThreshold
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5885748071259845329, guid: d759f6142e84a5446982871601cdebef,
+        type: 3}
+      propertyPath: wallJumpUpForce
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 7710918604291715914, guid: d759f6142e84a5446982871601cdebef,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2019,8 +2024,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8099698943898410990, guid: d759f6142e84a5446982871601cdebef,
         type: 3}
+      propertyPath: m_Height
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8099698943898410990, guid: d759f6142e84a5446982871601cdebef,
+        type: 3}
       propertyPath: m_Radius
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8099698943898410990, guid: d759f6142e84a5446982871601cdebef,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

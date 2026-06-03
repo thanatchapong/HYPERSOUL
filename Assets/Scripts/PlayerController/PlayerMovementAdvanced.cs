@@ -95,6 +95,9 @@ public class PlayerMovementAdvanced : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
 
+        playerObj.GetComponent<CapsuleCollider>().enabled = false;
+        playerObj.GetComponent<CapsuleCollider>().enabled = true; 
+
         readyToJump = true;
 
         startYScale = transform.localScale.y;
