@@ -9,6 +9,7 @@ TagManager:
   - Gold
   - Collectibles
   - GoldCollect
+  - Enemy
   layers:
   - Default
   - TransparentFX

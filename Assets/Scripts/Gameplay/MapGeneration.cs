@@ -9,7 +9,7 @@ public class MapGeneration : MonoBehaviour
     public struct RoomPrefabs
     {
         public Transform room;
-        [Range(0, 100)] public int percentage;
+        [Range(0, 100)] public float percentage;
     }
     
     [Header("References")]
@@ -89,7 +89,7 @@ public class MapGeneration : MonoBehaviour
     {
         if (roomPrefabs == null || roomPrefabs.Count == 0) return null;
 
-        int totalWeight = 0;
+        float totalWeight = 0;
         foreach (var p in roomPrefabs)
         {
             totalWeight += p.percentage;
@@ -100,8 +100,8 @@ public class MapGeneration : MonoBehaviour
             return roomPrefabs[Random.Range(0, roomPrefabs.Count)].room;
         }
 
-        int roll = Random.Range(0, totalWeight);
-        int weightCounter = 0;
+        float roll = Random.Range(0, totalWeight);
+        float weightCounter = 0;
 
         for (int i = 0; i < roomPrefabs.Count; i++)
         {
