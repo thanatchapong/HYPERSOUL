@@ -176,18 +176,18 @@ public class Rush : MonoBehaviour
         if (lightSystem == null) yield break;
 
         // Wait a small delay after Rush passes before recovering the environment's lights
-        yield return new WaitForSeconds(timeBeforeMove + 1f);
+        yield return new WaitForSeconds(1f);
         
         if (lightSystem == null) yield break;
         lightSystem.toggleLight(true);
         
-        // yield return new WaitForSeconds(0.2f);
-        // if (lightSystem == null) yield break;
-        // lightSystem.toggleLight(false);
+        yield return new WaitForSeconds(0.2f);
+        if (lightSystem == null) yield break;
+        lightSystem.toggleLight(false);
         
-        // yield return new WaitForSeconds(0.2f);
-        // if (lightSystem == null) yield break;
-        // lightSystem.toggleLight(true);
+        yield return new WaitForSeconds(0.2f);
+        if (lightSystem == null) yield break;
+        lightSystem.toggleLight(true);
     }
 
     /// <summary>

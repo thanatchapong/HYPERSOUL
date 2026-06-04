@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8189393473790297428}
-  - component: {fileID: 7307968381110225448}
   m_Layer: 0
   m_Name: WayPoints
   m_TagString: Untagged
@@ -34,27 +33,6 @@ Transform:
   - {fileID: 3163177305838074906}
   m_Father: {fileID: 7711822087070270355}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &7307968381110225448
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 997978546400729439}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 10, y: 10, z: 10}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1004201797556554922
 GameObject:
   m_ObjectHideFlags: 0
@@ -145,8 +123,8 @@ Transform:
   m_GameObject: {fileID: 2704269331824847422}
   serializedVersion: 2
   m_LocalRotation: {x: 0.5000003, y: -0.49999973, z: 0.49999973, w: 0.50000036}
-  m_LocalPosition: {x: 3.625822, y: -1.0229936, z: -4}
-  m_LocalScale: {x: 2, y: 2.7499502, z: 6.9999723}
+  m_LocalPosition: {x: 4.000822, y: -1.0229936, z: -4}
+  m_LocalScale: {x: 2, y: 2.0000386, z: 6.9999723}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7711822087070270355}
@@ -220,7 +198,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.1, y: 1.5, z: 1.1}
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4531946309044043677
 GameObject:
@@ -250,8 +228,8 @@ Transform:
   m_GameObject: {fileID: 4531946309044043677}
   serializedVersion: 2
   m_LocalRotation: {x: 0.5000003, y: -0.49999973, z: 0.49999973, w: 0.50000036}
-  m_LocalPosition: {x: -3.604168, y: -1.022996, z: -4}
-  m_LocalScale: {x: 2, y: 2.7499502, z: 6.9999723}
+  m_LocalPosition: {x: -3.9897, y: -1.022996, z: -4}
+  m_LocalScale: {x: 2, y: 1.9788383, z: 6.9999723}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7711822087070270355}
@@ -325,7 +303,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.1, y: 1.5, z: 1.1}
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4808701664674725959
 GameObject:
@@ -754,7 +732,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.1, y: 1.5, z: 1.1}
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7130844259660678130
 GameObject:
@@ -799,7 +777,7 @@ GameObject:
   m_Layer: 0
   m_Name: Tjunction
   m_TagString: Tile
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -887,7 +865,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.000000702822, y: -0.7071068, z: 0.7071068, w: 0.00000082701445}
   m_LocalPosition: {x: 0.058530807, y: -1.022996, z: 4.5000114}
-  m_LocalScale: {x: 8, y: 1, z: 8}
+  m_LocalScale: {x: 9.9999, y: 1, z: 8}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7711822087070270355}
@@ -961,7 +939,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.1, y: 1.5, z: 1.1}
+  m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &7303169766632075839
 PrefabInstance:
