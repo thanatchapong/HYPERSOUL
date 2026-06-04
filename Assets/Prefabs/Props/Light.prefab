@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6732205969365805720}
+  - component: {fileID: -521894155365897356}
   m_Layer: 0
   m_Name: Light
   m_TagString: Light
@@ -34,6 +35,21 @@ Transform:
   - {fileID: 7574793200322072448}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-521894155365897356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 809668057043736671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 984ef26c737a3c741af3c2fc641ce320, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lightOn: {fileID: 7010383359721686757}
+  lightOff: {fileID: 5279488204171579446}
+  lighting: 1
 --- !u!1 &972902765727040207
 GameObject:
   m_ObjectHideFlags: 0
@@ -652,7 +668,7 @@ Light:
   m_InnerSpotAngle: 45.371895
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 0
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
