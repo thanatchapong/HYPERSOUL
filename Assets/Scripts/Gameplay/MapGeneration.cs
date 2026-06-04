@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.AI.Navigation;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -69,7 +70,10 @@ public class MapGeneration : MonoBehaviour
 
         if(waypoints.Length <= 0) 
         {
+            GetComponent<NavMeshSurface>().BuildNavMesh();
+
             GameManager.SpawnCollectible();
+
             return;
         }
 

@@ -1222,6 +1222,7 @@ GameObject:
   - component: {fileID: 3219352206864560350}
   - component: {fileID: 1246857590578030170}
   - component: {fileID: 2086188896869547071}
+  - component: {fileID: 4344055879262875054}
   m_Layer: 6
   m_Name: JumpPad
   m_TagString: Untagged
@@ -1349,6 +1350,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 3}
   m_Center: {x: 0, y: 0.00000011920929, z: 1}
+--- !u!208 &4344055879262875054
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5115368006510655271}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &5708996861979342614
 GameObject:
   m_ObjectHideFlags: 0
@@ -1846,6 +1863,7 @@ GameObject:
   - component: {fileID: 3182517472795824809}
   - component: {fileID: 5887291284608290515}
   - component: {fileID: 6093543143387177045}
+  - component: {fileID: 7152500611006025426}
   m_Layer: 6
   m_Name: Cube (3)
   m_TagString: Untagged
@@ -1939,6 +1957,22 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!208 &7152500611006025426
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6804883442284286641}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1 &8132289282780683020
 GameObject:
   m_ObjectHideFlags: 0

@@ -13,9 +13,13 @@ public class Collectibles : MonoBehaviour
     [SerializeField] PlayerSound sound;
     [SerializeField] AudioClip clip;
 
+    float debounce = 0;
+
     void Update()
     {
         InfluenceCollectibles();
+
+        debounce += Time.deltaTime;
     }
 
     void InfluenceCollectibles()
@@ -29,8 +33,9 @@ public class Collectibles : MonoBehaviour
                 Transform collectible = hitColliders[i].transform;
                 float distance = Vector3.Distance(transform.position, collectible.position);
 
-                if (distance <= collectionThreshold)
+                if (distance <= collectionThreshold && debounce >= 0.1f)
                 {
+                    debounce = 0;
                     CollectItem(collectible.gameObject);
                 }
                 else

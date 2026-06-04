@@ -10,6 +10,7 @@ TagManager:
   - Collectibles
   - GoldCollect
   - Enemy
+  - Light
   layers:
   - Default
   - TransparentFX
