@@ -352,7 +352,7 @@ MonoBehaviour:
     percentage: 2.5
   - room: {fileID: 4126860811338273734, guid: 975dd3d00255aac4f95fb6cd0d967b4a, type: 3}
     percentage: 2.5
-  maxRoom: 25
+  maxRoom: 30
 --- !u!114 &178229402
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1713,7 +1713,7 @@ PrefabInstance:
     - target: {fileID: 1019303808229388661, guid: 26f29592ce0db054093545bdbaf0760d,
         type: 3}
       propertyPath: pathFlickerWidth
-      value: 12
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1289381825269217354, guid: 26f29592ce0db054093545bdbaf0760d,
         type: 3}
