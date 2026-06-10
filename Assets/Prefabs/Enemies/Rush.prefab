@@ -100,7 +100,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 3.25, z: 0}
-  m_LocalScale: {x: 6, y: 5.5, z: 1}
+  m_LocalScale: {x: 4.19688, y: 3.84714, z: 0.69948}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2262612920411937910}
@@ -133,7 +133,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: bd974ebf4deca4a4d8ed8f14fecee057, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -174,7 +174,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 1, y: 1.4, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4381011140646011003
 GameObject:
@@ -921,7 +921,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6571947019060508635}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0.70710444, z: -0, w: 0.70710915}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 10, y: 0, z: -0.00006929039}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -965,8 +965,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 8169042418132779539}
   body: {fileID: 4381011140646011003}
-  timeBeforeMove: 5
-  timeBetweenMove: 2
-  searchRadius: 50
-  maxSearchRadius: 100
-  pathFlickerWidth: 10
+  timeBeforeMove: 8
+  timeBetweenMove: 5
+  detectionRadius: 8
+  showDebugGizmos: 1
+  enableConsoleLogging: 1

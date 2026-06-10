@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.AI.Navigation;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class MapGeneration : MonoBehaviour
@@ -12,17 +11,30 @@ public class MapGeneration : MonoBehaviour
         public Transform room;
         [Range(0, 100)] public float percentage;
     }
+
+    [System.Serializable]
+    public struct PropPrefabs
+    {
+        public Transform prop;
+        [Range(0, 100)] public float percentage;
+    }
     
     [Header("References")]
-    [SerializeField] Transform wall;
-    [SerializeField] List<RoomPrefabs> roomPrefabs;
+    [SerializeField] private Transform wall;
+    [SerializeField] private List<RoomPrefabs> roomPrefabs;
+    [SerializeField] private List<PropPrefabs> propPrefabs;
     
-    GameObject[] tiles;
-    GameObject[] waypoints;
+    private GameObject[] tiles;
+    private GameObject[] waypoints;
+    private GameObject[] collectibles;
 
-    [Header("Settings")]
-    [SerializeField] int maxRoom = 5;
-    int roomCount;
+    [Header("Room Settings")]
+    [SerializeField] private int maxRoom = 5;
+    private int roomCount;
+
+    [Header("Prop Spawn Settings")]
+    [Tooltip("The percentage chance (0 to 100) that a prop will spawn at any given collectible marker spot.")]
+    [Range(0f, 100f)] [SerializeField] private float propSpawnRate = 75f;
 
     void Start()
     {
@@ -33,30 +45,40 @@ public class MapGeneration : MonoBehaviour
     {
         tiles = GameObject.FindGameObjectsWithTag("Tile");
     }
+    
     void GetWaypoints()
     {
         waypoints = GameObject.FindGameObjectsWithTag("WayPoint");
     }
+    
+    void GetCollectibles()
+    {
+        collectibles = GameObject.FindGameObjectsWithTag("Gold");
+    }
+
     bool IsWaypointCollided(Transform waypoint)
     {
         GetTiles();
 
-        for(int i=0; i<tiles.Length; i++)
+        for(int i = 0; i < tiles.Length; i++)
         {
-            if(Vector3.Distance(waypoint.position, tiles[i].transform.position) < 2.5f) return true;
+            if (tiles[i] == null) continue;
+            if (Vector3.Distance(waypoint.position, tiles[i].transform.position) < 2.5f) return true;
         }
 
         return false;
     }
+
     bool IsTileCollided()
     {
         GetTiles();
 
-        for(int i=0; i<tiles.Length; i++)
+        for(int i = 0; i < tiles.Length; i++)
         {
-            for(int o=0; o<tiles.Length; o++)
+            if (tiles[i] == null) continue;
+            for(int o = 0; o < tiles.Length; o++)
             {
-                if(o == i) continue;
+                if (tiles[o] == null || o == i) continue;
                 if (Vector3.Distance(tiles[o].transform.position, tiles[i].transform.position) < 2.5f) return true;
             }
         }
@@ -64,29 +86,73 @@ public class MapGeneration : MonoBehaviour
         return false;
     }
 
+    void ApplyProp()
+    {
+        GetCollectibles();
+
+        if (collectibles == null || collectibles.Length == 0) return;
+
+        foreach (GameObject spot in collectibles)
+        {
+            if (spot == null) continue;
+
+            float roll = Random.Range(0f, 100f);
+            if (roll <= propSpawnRate)
+            {
+                Transform chosenPropPrefab = GetWeightedRandomProp();
+
+                if (chosenPropPrefab != null)
+                {
+                    Transform spawnedProp = Instantiate(chosenPropPrefab, spot.transform.position, spot.transform.rotation);
+
+                    Vector3 originalScale = spawnedProp.localScale;
+                    if (Random.value > 0.5f)
+                    {
+                        originalScale.x *= -1f;
+                    }
+                    spawnedProp.localScale = originalScale;
+                }
+            }
+
+            SafeDestroy(spot);
+        }
+    }
+
     void ApplyWall()
     {
         GetWaypoints();
 
-        if(waypoints.Length <= 0) 
+        if (waypoints == null || waypoints.Length == 0) 
         {
             GetComponent<NavMeshSurface>().BuildNavMesh();
-
-            GameManager.SpawnCollectible();
-
+            ApplyProp();
             return;
         }
 
-        int randomWaypoint = Random.Range(0, waypoints.Length);
-
-        if(!IsWaypointCollided(waypoints[randomWaypoint].transform))
+        List<GameObject> shuffledWaypoints = new List<GameObject>(waypoints);
+        for (int i = 0; i < shuffledWaypoints.Count; i++)
         {
-            Instantiate(wall, waypoints[randomWaypoint].transform.position, waypoints[randomWaypoint].transform.rotation);
+            GameObject temp = shuffledWaypoints[i];
+            int randomIndex = Random.Range(i, shuffledWaypoints.Count);
+            shuffledWaypoints[i] = shuffledWaypoints[randomIndex];
+            shuffledWaypoints[randomIndex] = temp;
         }
-            
-        SafeDestroy(waypoints[randomWaypoint]);
 
-        ApplyWall();
+        foreach (GameObject waypointObj in shuffledWaypoints)
+        {
+            if (waypointObj == null) continue;
+
+            if (!IsWaypointCollided(waypointObj.transform))
+            {
+                Instantiate(wall, waypointObj.transform.position, waypointObj.transform.rotation);
+            }
+            
+            SafeDestroy(waypointObj);
+        }
+
+        GetComponent<NavMeshSurface>().BuildNavMesh();
+
+        ApplyProp();
     }
 
     private Transform GetWeightedRandomRoom()
@@ -119,6 +185,36 @@ public class MapGeneration : MonoBehaviour
         return roomPrefabs[0].room;
     }
 
+    private Transform GetWeightedRandomProp()
+    {
+        if (propPrefabs == null || propPrefabs.Count == 0) return null;
+
+        float totalWeight = 0;
+        foreach (var p in propPrefabs)
+        {
+            totalWeight += p.percentage;
+        }
+
+        if (totalWeight <= 0)
+        {
+            return propPrefabs[Random.Range(0, propPrefabs.Count)].prop;
+        }
+
+        float roll = Random.Range(0, totalWeight);
+        float weightCounter = 0;
+
+        for (int i = 0; i < propPrefabs.Count; i++)
+        {
+            weightCounter += propPrefabs[i].percentage;
+            if (roll < weightCounter)
+            {
+                return propPrefabs[i].prop;
+            }
+        }
+
+        return propPrefabs[0].prop;
+    }
+
     private void SafeDestroy(GameObject obj)
     {
         if (obj == null) return;
@@ -137,13 +233,19 @@ public class MapGeneration : MonoBehaviour
 
     void GenerateRoom()
     {
-        if(roomCount >= maxRoom) 
+        if (roomCount >= maxRoom) 
         {
             ApplyWall();
             return;
         }
 
         GetWaypoints();
+
+        if (waypoints == null || waypoints.Length == 0)
+        {
+            ApplyWall();
+            return;
+        }
 
         int randomWaypoint = Random.Range(0, waypoints.Length);
         GameObject selectedWaypoint = waypoints[randomWaypoint];
