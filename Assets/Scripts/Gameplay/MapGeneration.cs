@@ -114,7 +114,7 @@ public class MapGeneration : MonoBehaviour
                 }
             }
 
-            SafeDestroy(spot);
+            // SafeDestroy(spot);
         }
     }
 
