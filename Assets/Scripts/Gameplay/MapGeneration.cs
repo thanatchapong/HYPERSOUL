@@ -116,6 +116,8 @@ public class MapGeneration : MonoBehaviour
 
             // SafeDestroy(spot);
         }
+
+        GameManager.SpawnGold();
     }
 
     void ApplyWall()

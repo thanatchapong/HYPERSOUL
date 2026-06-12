@@ -89,6 +89,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
 
     [Header("Animation")]
     [SerializeField] Animator anim;
+    [SerializeField] Animator hand;
 
     private void Start()
     {
@@ -274,6 +275,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
             if(anim)
             {
                 anim.SetBool("Walk", true);
+                hand.SetBool("Walk", true);
             }
         }
 
@@ -287,6 +289,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
             if(anim)
             {
                 anim.SetBool("Walk", true);
+                hand.SetBool("Walk", true);
             }
         }
 
@@ -304,6 +307,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
             if(anim)
             {
                 anim.SetBool("Walk", false);
+                hand.SetBool("Walk", false);
             }
         }
 
@@ -316,6 +320,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
             if(anim)
             {
                 anim.SetBool("Walk", false);
+                hand.SetBool("Walk", false);
             }
         }
 
@@ -328,6 +333,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
             if(anim)
             {
                 anim.SetBool("Walk", true);
+                hand.SetBool("Walk", true);
             }
         }
 
@@ -340,10 +346,12 @@ public class PlayerMovementAdvanced : MonoBehaviour
             if(anim && ((horizontalInput != 0) || (verticalInput != 0)))
             {
                 anim.SetBool("Walk", true);
+                hand.SetBool("Walk", true);
             }
             else
             {
                 anim.SetBool("Walk", false);
+                hand.SetBool("Walk", false);
             }
         }
 
@@ -355,6 +363,7 @@ public class PlayerMovementAdvanced : MonoBehaviour
             if(anim)
             {
                 anim.SetBool("Walk", false);
+                hand.SetBool("Walk", false);
             }
         }
 
